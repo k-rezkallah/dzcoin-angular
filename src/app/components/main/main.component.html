@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="main-header">
+    <h2>
+      Last Updated: <span style="color: white">hh:mm:ss GTM dd/mm/yyyy</span>
+    </h2>
+  </div>
+  <div class="main-main">
+    <form class="example-container" [formGroup]="mainForm">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>SEND </mat-label>
+        <mat-select
+          formControlName="sendCurrencyControl"
+          [(value)]="sendCurrency"
+        >
+          <mat-option value="dza">DZA</mat-option>
+          <mat-option value="ruble">Ruble</mat-option>
+          <mat-option value="euro">Euro</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          type="number"
+          class="example-right-align"
+          placeholder="0"
+          formControlName="sendAmountControl"
+          [(ngModel)]="sendAmount"
+        />
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
+      </mat-form-field>
+
+      <hr />
+
+      <button
+        mat-icon-button
+        (click)="switchCurrency()"
+        [disabled]="receiveCurrency === sendCurrency"
+        [ngClass]="{ disbled: receiveCurrency === sendCurrency }"
+      >
+        <mat-icon>cached</mat-icon>
+      </button>
+      <hr />
+      <br />
+      <mat-form-field appearance="outline" [color]="'warn'" floatLabel="always">
+        <mat-label>RECEIVE </mat-label>
+        <mat-select
+          formControlName="receiveCurrencyControl"
+          [(value)]="receiveCurrency"
+        >
+          <mat-option value="dza">DZA</mat-option>
+          <mat-option value="ruble">Ruble</mat-option>
+          <mat-option value="euro">Euro</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          type="number"
+          class="example-right-align"
+          placeholder="0"
+          [(ngModel)]="receiveAmount"
+          formControlName="receiveAmountControl"
+        />
+
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
+      </mat-form-field>
+    </form>
+  </div>
+</div>

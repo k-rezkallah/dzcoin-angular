@@ -1,0 +1,22 @@
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.container {
+  height: 80%;
+  max-width: 1200px;
+  margin: 10px auto;
+  background-color: #005a51;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+button.mat-focus-indicator.mat-icon-button.mat-button-base {
+  margin: 0 40%;
+  color: #fff;
+  font-size: larger;
+}
+button.mat-focus-indicator.mat-icon-button.mat-button-base.mat-button-disabled {
+  color: cadetblue;
+}
