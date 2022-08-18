@@ -10,6 +10,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class MainComponent implements OnInit {
   arrowIcon = faArrowsAltV;
+  lastUpdate: string = new Date().toString();
   sendCurrency: string = 'dza';
   receiveCurrency: string = 'ruble';
   sendAmount: number = 1000;
