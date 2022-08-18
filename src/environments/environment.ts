@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ruble: {
+    send: 65,
+    receive: 61,
+  },
+  dza: {
+    send: 216,
+    receive: 210,
+  },
 };
 
 /*
