@@ -9,6 +9,15 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  dzaSendRating: number = 216;
+  dzaReceiveRating: number = 210;
+
+  rubSendRating: number = 65;
+  rubReceiveRating: number = 61;
+
+  euroSendRating: number = 1;
+  euroReceiveRating: number = 1;
+
   arrowIcon = faArrowsAltV;
   lastUpdate: string = new Date().toString();
   sendCurrency: string = 'dza';
@@ -20,7 +29,7 @@ export class MainComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {}
   ngOnInit(): void {
-    this.receiveAmount = this.currencyRate();
+    this.receiveAmount = this.currencyReceiveRate();
     this.mainForm = this._formBuilder.group({
       sendCurrencyControl: ['dza', Validators.required],
       sendAmountControl: [this.sendAmount, Validators.min(1000)],
@@ -28,8 +37,56 @@ export class MainComponent implements OnInit {
       receiveAmountControl: [this.receiveAmount, Validators.min(1000)],
     });
   }
-  currencyRate(): number {
-    return this.sendAmount * 3.31;
+  currencyReceiveRate(): number {
+    let receive: number = 0;
+    if (this.sendCurrency === 'dza') {
+      if (this.receiveCurrency === 'ruble') {
+        receive =
+          (this.sendAmount / this.dzaSendRating) * this.rubReceiveRating;
+      } else {
+        receive = this.sendAmount / this.dzaSendRating;
+      }
+    } else if (this.sendCurrency === 'ruble') {
+      if (this.receiveCurrency === 'dza')
+        receive =
+          (this.sendAmount / this.rubSendRating) * this.dzaReceiveRating;
+      else receive = this.sendAmount / this.rubSendRating;
+    } else {
+      if (this.receiveCurrency === 'dza')
+        receive = this.sendAmount * this.dzaReceiveRating;
+      else receive = this.sendAmount * this.rubReceiveRating;
+    }
+    return Number.parseFloat(receive.toFixed(2));
+  }
+  currencySendRate(): number {
+    let send: number = 0;
+    if (this.receiveCurrency === 'dza') {
+      if (this.sendCurrency === 'ruble')
+        send =
+          (this.receiveAmount / this.dzaReceiveRating) * this.rubSendRating;
+      else send = this.receiveAmount / this.dzaSendRating;
+    } else if (this.receiveCurrency === 'ruble') {
+      if (this.sendCurrency === 'dza')
+        send =
+          (this.receiveAmount / this.rubReceiveRating) * this.dzaSendRating;
+      else send = this.sendAmount / this.rubSendRating;
+    } else {
+      if (this.sendCurrency === 'dza')
+        send = this.receiveAmount * this.dzaSendRating;
+      else send = this.receiveAmount * this.rubSendRating;
+    }
+    return Number.parseFloat(send.toFixed(2));
+  }
+  calcCurrency() {
+    this.receiveAmount = this.currencyReceiveRate();
+  }
+  sendChange() {
+    console.log('sendChange()');
+    this.receiveAmount = this.currencyReceiveRate();
+  }
+  receiveChange() {
+    console.log('receiveChange()');
+    this.sendAmount = this.currencySendRate();
   }
 
   switchCurrency() {
@@ -41,6 +98,8 @@ export class MainComponent implements OnInit {
     this.receiveAmount = this.sendAmount;
     this.sendAmount = tempAmount;
 
+    this.receiveAmount = this.currencyReceiveRate();
+
     console.log(
       'switchCurrency done!',
       'send Currency is',
@@ -48,5 +107,14 @@ export class MainComponent implements OnInit {
       'receive Currency is ',
       this.mainForm.value['receiveCurrencyControl']
     );
+  }
+  receiveCurrencyChange() {
+    console.log('receiveCurrencyChange');
+    this.sendAmount = this.currencySendRate();
+  }
+
+  sendCurrencyChange() {
+    console.log('sendCurrencyChange');
+    this.receiveAmount = this.currencyReceiveRate();
   }
 }

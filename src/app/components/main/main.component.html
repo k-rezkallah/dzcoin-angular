@@ -11,6 +11,7 @@
         <mat-select
           formControlName="sendCurrencyControl"
           [(value)]="sendCurrency"
+          (valueChange)="sendCurrencyChange()"
         >
           <mat-option [disabled]="receiveCurrency === 'dza'" value="dza"
             >DZA</mat-option
@@ -33,6 +34,7 @@
           placeholder="0"
           formControlName="sendAmountControl"
           [(ngModel)]="sendAmount"
+          (change)="sendChange()"
         />
         <span matPrefix>$&nbsp;</span>
         <!-- <span matSuffix>.00</span> -->
@@ -55,6 +57,7 @@
         <mat-select
           formControlName="receiveCurrencyControl"
           [(value)]="receiveCurrency"
+          (valueChange)="receiveCurrencyChange()"
         >
           <mat-option [disabled]="sendCurrency === 'dza'" value="dza"
             >DZA</mat-option
@@ -77,6 +80,7 @@
           placeholder="0"
           [(ngModel)]="receiveAmount"
           formControlName="receiveAmountControl"
+          (change)="receiveChange()"
         />
 
         <span matPrefix>$&nbsp;</span>
