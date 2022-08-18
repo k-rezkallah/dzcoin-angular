@@ -12,9 +12,15 @@
           formControlName="sendCurrencyControl"
           [(value)]="sendCurrency"
         >
-          <mat-option [disabled]="sendCurrency===receiveCurrency" value="dza">DZA</mat-option>
-          <mat-option value="ruble">Ruble</mat-option>
-          <mat-option value="euro">Euro</mat-option>
+          <mat-option [disabled]="receiveCurrency === 'dza'" value="dza"
+            >DZA</mat-option
+          >
+          <mat-option [disabled]="receiveCurrency === 'ruble'" value="ruble"
+            >Ruble</mat-option
+          >
+          <mat-option [disabled]="receiveCurrency === 'euro'" value="euro"
+            >Euro</mat-option
+          >
         </mat-select>
       </mat-form-field>
 
@@ -50,9 +56,15 @@
           formControlName="receiveCurrencyControl"
           [(value)]="receiveCurrency"
         >
-          <mat-option value="dza">DZA</mat-option>
-          <mat-option value="ruble">Ruble</mat-option>
-          <mat-option value="euro">Euro</mat-option>
+          <mat-option [disabled]="sendCurrency === 'dza'" value="dza"
+            >DZA</mat-option
+          >
+          <mat-option [disabled]="sendCurrency === 'ruble'" value="ruble"
+            >Ruble</mat-option
+          >
+          <mat-option [disabled]="sendCurrency === 'euro'" value="euro"
+            >Euro</mat-option
+          >
         </mat-select>
       </mat-form-field>
 
