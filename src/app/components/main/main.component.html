@@ -12,7 +12,7 @@
           formControlName="sendCurrencyControl"
           [(value)]="sendCurrency"
         >
-          <mat-option value="dza">DZA</mat-option>
+          <mat-option [disabled]="sendCurrency===receiveCurrency" value="dza">DZA</mat-option>
           <mat-option value="ruble">Ruble</mat-option>
           <mat-option value="euro">Euro</mat-option>
         </mat-select>
