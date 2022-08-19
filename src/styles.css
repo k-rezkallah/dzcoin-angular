@@ -86,7 +86,7 @@ body {
     font-size: 16px !important;
   }
   mat-form-field {
-    display: flow-root !important;
+    display: block !important;
   }
 }
 
@@ -103,7 +103,7 @@ body {
     font-size: 16px !important;
   }
   mat-form-field {
-    display: flow-root !important;
+    display: block !important;
   }
 }
 
@@ -120,7 +120,7 @@ body {
     font-size: 16px !important;
   }
   mat-form-field {
-    display: flow-root !important;
+    display: block !important;
   }
 }
 
@@ -137,7 +137,7 @@ body {
     font-size: 16px !important;
   }
   mat-form-field {
-    display: flow-root !important;
+    display: block !important;
   }
 }
 @media screen and (max-width: 282px) {
@@ -154,6 +154,6 @@ body {
     font-size: 16px !important;
   }
   mat-form-field {
-    display: flow-root !important;
+    display: block !important;
   }
 }
