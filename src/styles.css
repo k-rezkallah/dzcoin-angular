@@ -2,15 +2,158 @@
 
 html,
 body {
-  height: 100%;
+  height: 100% !important;
+  box-sizing: border-box;
+  margin: 0 !important;
 }
+
 body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+@media screen and (max-height: 915px) {
+  html,
+  body {
+    height: 915px !important;
+  }
+}
+
+@media screen and (max-height: 896px) {
+  html,
+  body {
+    height: 896px !important;
+  }
+}
+
+@media screen and (max-height: 892px) {
+  html,
+  body {
+    height: 892px !important;
+  }
+}
+
+@media screen and (max-height: 851px) {
+  html,
+  body {
+    height: 851px !important;
+  }
+}
+
+@media screen and (max-height: 844px) {
+  html,
+  body {
+    height: 844px !important;
+  }
+}
+
+@media screen and (max-height: 812px) {
+  html,
+  body {
+    height: 812px !important;
+  }
+}
+
+@media screen and (max-height: 789px) {
+  html,
+  body {
+    height: 789px !important;
+  }
+}
+@media screen and (max-height: 667px) {
+  html,
+  body {
+    height: 667px !important;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  html,
+  body {
+    height: 600px !important;
+  }
+}
+
 @media screen and (max-width: 540px) {
-  html {
-    width: fit-content !important;
+  html,
+  body {
+    width: 540px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: flow-root !important;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  html,
+  body {
+    width: 412px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: flow-root !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  html,
+  body {
+    width: 390px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: flow-root !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  html,
+  body {
+    width: 375px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: flow-root !important;
+  }
+}
+@media screen and (max-width: 282px) {
+  html,
+  body {
+    width: 282px !important;
+  }
+
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: flow-root !important;
   }
 }

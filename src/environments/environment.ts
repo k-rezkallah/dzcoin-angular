@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   ruble: {
     send: 65,
-    receive: 61,
+    receive: 59,
   },
   dza: {
     send: 216,

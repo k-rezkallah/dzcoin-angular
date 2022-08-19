@@ -2,7 +2,8 @@
   <div class="main-header">
     <h2>
       Last Updated:
-      <span style="color: white">{{ lastUpdate | date: "short" }}</span>
+      <!--<span>{{ lastUpdate | date: "medium" }}</span>-->
+      <span>{{ lastUpdate }}</span>
     </h2>
   </div>
   <div class="main-main">
@@ -37,8 +38,10 @@
           [(ngModel)]="sendAmount"
           (change)="sendChange()"
         />
-        <span matPrefix>$&nbsp;</span>
-        <!-- <span matSuffix>.00</span> -->
+        <span class="span-currency" matPrefix
+          ><fa-icon [icon]="setCurrencySybmol(sendCurrency)"></fa-icon>
+        </span>
+        <span matSuffix>{{ sendCurrencySymbole | uppercase }}</span>
       </mat-form-field>
 
       <hr />
@@ -84,8 +87,10 @@
           (change)="receiveChange()"
         />
 
-        <span matPrefix>$&nbsp;</span>
-        <!-- <span matSuffix>.00</span> -->
+        <span class="span-currency" matPrefix
+          ><fa-icon [icon]="setCurrencySybmol(receiveCurrency)"></fa-icon>
+        </span>
+        <span matSuffix>{{ receiveCurrencySymbole | uppercase }}</span>
       </mat-form-field>
     </form>
   </div>

@@ -2,6 +2,7 @@
   margin-left: 8px;
 }
 .container {
+  font-size: 14px;
   height: 80%;
   max-width: 1200px;
   margin: 10px auto;
@@ -19,4 +20,16 @@ button.mat-focus-indicator.mat-icon-button.mat-button-base {
 }
 button.mat-focus-indicator.mat-icon-button.mat-button-base.mat-button-disabled {
   color: cadetblue;
+}
+.main-header h2 {
+  color: #ffffffc1;
+}
+
+.main-header span {
+  color: black;
+}
+
+span.span-currency {
+  color: white;
+  padding-right: 5px;
 }
