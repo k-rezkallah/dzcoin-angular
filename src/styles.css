@@ -90,6 +90,23 @@ body {
   }
 }
 
+@media screen and (max-width: 414px) {
+  html,
+  body {
+    width: 414px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: block !important;
+  }
+}
+
 @media screen and (max-width: 412px) {
   html,
   body {
@@ -107,6 +124,22 @@ body {
   }
 }
 
+@media screen and (max-width: 393px) {
+  html,
+  body {
+    width: 393px !important;
+  }
+  h1,
+  h2 {
+    font-size: 14px !important;
+  }
+  mat-toolbar {
+    font-size: 16px !important;
+  }
+  mat-form-field {
+    display: block !important;
+  }
+}
 @media screen and (max-width: 390px) {
   html,
   body {
