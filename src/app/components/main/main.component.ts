@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   // arrowIcon = faArrowsAltV;
 
   // lastUpdate: string = new Date().toDateString();
-  lastUpdate: string = 'Aug 20, 2022, 09:14:00 AM';
+  lastUpdate: string = 'Aug 26, 2022, 09:14:00 AM';
   sendCurrency: string = 'dza';
   receiveCurrency: string = 'ruble';
   sendAmount: number = 21600;
