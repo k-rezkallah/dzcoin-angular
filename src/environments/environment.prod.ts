@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   ruble: {
-    send: 66,
-    receive: 58.5,
+    send: 63.55,
+    receive: 57,
   },
   dza: {
-    send: 216,
-    receive: 209,
+    send: 215,
+    receive: 211,
   },
 };

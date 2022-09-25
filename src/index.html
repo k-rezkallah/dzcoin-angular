@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>DzcoinAngular</title>
+    <title>Dzcoin - Calculator</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -15,13 +15,44 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <script
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo+Play&display=swap"
+      rel="stylesheet"
+    />
+    <!--<script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1342375496811916"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
+    <!-- Это заголовок страницы. -->
+    <!-- Yandex.RTB -->
+    <script>
+      window.yaContextCb = window.yaContextCb || [];
+    </script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <!-- Yandex.RTB R-A-1953934-1 -->
+    <script>
+      window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+          type: "floorAd",
+          blockId: "R-A-1953934-1",
+        });
+      });
+    </script>
   </head>
   <body class="mat-typography">
     <app-root></app-root>
   </body>
+  <!-- Yandex.RTB R-A-1953934-3 -->
+  <div id="yandex_rtb_R-A-1953934-3"></div>
+  <script>
+    window.yaContextCb.push(() => {
+      Ya.Context.AdvManager.render({
+        renderTo: "yandex_rtb_R-A-1953934-3",
+        blockId: "R-A-1953934-3",
+      });
+    });
+  </script>
 </html>

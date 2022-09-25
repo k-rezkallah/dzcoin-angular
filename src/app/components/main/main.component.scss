@@ -1,12 +1,12 @@
 .example-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
-.main-container {
+.content {
   font-size: 14px;
-  height: 90%;
+  height: calc(100vh - 77px);
   max-width: 1200px;
   margin: 10px auto;
-  background-color: #005a51;
+  background-color: #a5b1af;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,15 +21,43 @@ button.mat-focus-indicator.mat-icon-button.mat-button-base {
 button.mat-focus-indicator.mat-icon-button.mat-button-base.mat-button-disabled {
   color: cadetblue;
 }
-.main-header h2 {
-  color: #ffffffc1;
-}
 
-.main-header span {
-  color: black;
+.main-header {
+  color: #404040;
 }
 
 span.span-currency {
   color: white;
   padding-right: 5px;
+}
+
+// hide arrow/spinner of the input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  font-weight: bold;
+}
+
+button.btn-clear {
+  margin: 0 auto !important;
+}
+
+mat-label.label-send {
+  color: #db5461 !important;
+  text-decoration: underline 2px white;
+}
+mat-label.label-receive {
+  color: black !important;
+  text-decoration: underline 2px white;
+}
+
+.switch-button {
+  margin-bottom: 16px;
 }

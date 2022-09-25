@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 // import { faArrowsAltV } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'src/environments/environment';
-import {
-  faDollar,
-  faEuro,
-  faRubleSign,
-} from '@fortawesome/free-solid-svg-icons';
-import { faRuble } from '@fortawesome/free-solid-svg-icons';
+import { faDollar, faEuro, faRuble } from '@fortawesome/free-solid-svg-icons';
+import { fromEvent, interval, map, switchMap, tap } from 'rxjs';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-main',
@@ -15,43 +18,61 @@ import { faRuble } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  // dz rate
   dzaSendRating: number = environment.dza.send;
   dzaReceiveRating: number = environment.dza.receive;
-
+  // rub rate
   rubSendRating: number = environment.ruble.send;
   rubReceiveRating: number = environment.ruble.receive;
 
   sendCurrencySymbole: string = 'dza';
   receiveCurrencySymbole: string = 'ruble';
 
+  // curruncy symbols
   euroSign = faEuro;
   rubSign = faRuble;
   dzaSign = faDollar;
 
-  // arrowIcon = faArrowsAltV;
-
-  // lastUpdate: string = new Date().toDateString();
-  lastUpdate: string = 'Aug 26, 2022, 09:14:00 AM';
+  lastUpdate: string = new Date().toDateString();
   sendCurrency: string = 'dza';
   receiveCurrency: string = 'ruble';
-  sendAmount: number = 21600;
+  sendAmount: number = environment.dza.send;
   receiveAmount!: number;
 
   mainForm!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  //input form event
+  @ViewChild('inputSend', { static: true, read: ElementRef })
+  inputSend!: ElementRef;
+  @ViewChild('inputReceive', { static: true, read: ElementRef })
+  inputReceive!: ElementRef;
+
+  // form select event
+  @ViewChild('selectSend', { static: true, read: ElementRef })
+  selectSend!: ElementRef;
+  @ViewChild('selectReceive', { static: true, read: ElementRef })
+  selectReceive!: ElementRef;
+
+  constructor() {}
+
   ngOnInit(): void {
     this.receiveAmount = this.currencyReceiveRate();
-    this.mainForm = this._formBuilder.group({
-      sendCurrencyControl: ['dza', Validators.required],
-      sendAmountControl: [this.sendAmount, Validators.min(10)],
-      receiveCurrencyControl: ['ruble', Validators.required],
-      receiveAmountControl: [this.receiveAmount, Validators.min(10)],
-    });
+
+    fromEvent<InputEvent>(this.inputSend.nativeElement, 'input').subscribe(() =>
+      this.sendChange()
+    );
+
+    fromEvent<InputEvent>(this.inputReceive.nativeElement, 'input').subscribe(
+      () => this.receiveChange()
+    );
   }
+
+  // caluculate the receive rate depending receive/send currency and rates
   currencyReceiveRate(): number {
     let heighAmount: boolean = false;
     let receive: number = 0;
+
+    if (this.sendCurrency === this.receiveCurrency) return this.sendAmount;
 
     if (this.sendCurrency === 'dza') {
       if (this.sendAmount >= (this.dzaSendRating - 1) * 1000) {
@@ -82,68 +103,56 @@ export class MainComponent implements OnInit {
 
     return Number.parseFloat(receive.toFixed(2));
   }
-
+  // caluculate the send rate depending receive/send currency and rates
   currencySendRate(): number {
     let send: number = 0;
 
+    // if it's the same currency
+    if (this.sendCurrency === this.receiveCurrency) return this.sendAmount;
+
+    // else we should consider currency
     if (this.receiveCurrency === 'dza') {
-      console.log('inside  dza receive part');
       send = this.receiveAmount / this.dzaReceiveRating;
       if (this.sendCurrency === 'ruble') send = send * this.rubSendRating;
     } else if (this.receiveCurrency === 'ruble') {
-      console.log('inside ruble receive part');
       send = this.receiveAmount / this.rubReceiveRating;
       if (this.sendCurrency === 'dza') send = send * this.dzaSendRating;
     } else {
-      console.log('inside euro receive part');
       if (this.sendCurrency === 'dza')
         send = this.receiveAmount * this.dzaSendRating;
       else send = this.receiveAmount * this.rubSendRating;
     }
     return Number.parseFloat(send.toFixed(2));
   }
-
-  calcCurrency() {
-    this.receiveAmount = this.currencyReceiveRate();
-  }
-
+  // activated whenever send input value changed
   sendChange() {
-    console.log('sendChange()');
     this.receiveAmount = this.currencyReceiveRate();
   }
+  // activated whenever receive input value changed
   receiveChange() {
-    console.log('receiveChange()');
     this.sendAmount = this.currencySendRate();
   }
-
+  // switch send and receive currencies rates and symbols
   switchCurrency() {
     const tempCurrency = this.receiveCurrency;
     this.receiveCurrency = this.sendCurrency;
     this.sendCurrency = tempCurrency;
 
     const tempAmount = this.receiveAmount;
-    this.receiveAmount = this.sendAmount;
     this.sendAmount = tempAmount;
-
     this.receiveAmount = this.currencyReceiveRate();
 
-    console.log(
-      'switchCurrency done!',
-      'send Currency is',
-      this.mainForm.value['sendCurrencyControl'],
-      'receive Currency is ',
-      this.mainForm.value['receiveCurrencyControl']
-    );
+    const tempCurrencySymbole = this.receiveCurrencySymbole;
+    this.receiveCurrencySymbole = this.sendCurrencySymbole;
+    this.sendCurrencySymbole = tempCurrencySymbole;
   }
 
   receiveCurrencyChange() {
-    console.log('receiveCurrencyChange to =>', this.receiveCurrency);
     this.receiveAmount = this.currencyReceiveRate();
     this.receiveCurrencySymbole = this.receiveCurrency;
   }
 
   sendCurrencyChange() {
-    console.log('sendCurrencyChange to =>', this.sendCurrency);
     this.receiveAmount = this.currencyReceiveRate();
     this.sendCurrencySymbole = this.sendCurrency;
   }

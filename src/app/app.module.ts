@@ -12,27 +12,34 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MainComponent } from './components/main/main.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatOptionModule } from '@angular/material/option';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { FooterComponent } from './components/footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, MainComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    ToolbarComponent,
+    MainComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     FontAwesomeModule,
     MatFormFieldModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatDividerModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
